@@ -13,10 +13,10 @@ def form_request_body_from_args(time, source_tz, dest_tz):
 
 
 def get_useful_params_form_response_body(json_body):
-    required_body = json_body.get('conversionResult', {})
     return {
-        "time": required_body.get('time'),
-        "timeZone": required_body.get('timeZone')
+        "time": json_body.get('conversionResult', {}).get('time'),
+        "toTimeZone": json_body.get('conversionResult', {}).get('timeZone'),
+        "fromTimeZone": json_body.get('fromTimezone')
     }
 
 
